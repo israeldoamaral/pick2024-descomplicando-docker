@@ -19,7 +19,7 @@ Essa abordagem permite que os desenvolvedores empacotem software para execução
 Os contêineres são altamente portáteis e podem ser executados em diferentes máquinas e sistemas operacionais.
 Por exemplo, uma aplicação corporativa pode ser dividida em **microsserviços**, cada um executado como um contêiner em várias máquinas e máquinas virtuais (VMs) no datacenter ou na nuvem
 
-### Dockerfile
+### Dockerfile <a id="ancora"></a>
 
 ```
 FROM debian:10
@@ -36,7 +36,7 @@ ENTRYPOINT [ "/usr/sbin/apachectl" ]
 CMD [ "-D", "FOREGROUND" ]
 ```
 ### Estrutura e instruções do Dockerfile 
-<a id="ancora"></a>
+
 
 1. FROM: A instrução FROM define a imagem base para a construção da nova imagem. Aqui, estamos usando a imagem oficial do Debian 10 como ponto de partida.
 2. RUN: A instrução RUN executa comandos no ambiente de construção da imagem.
