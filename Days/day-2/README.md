@@ -35,7 +35,8 @@ EXPOSE 80
 ENTRYPOINT [ "/usr/sbin/apachectl" ]
 CMD [ "-D", "FOREGROUND" ]
 ```
-### Estrutura e instruções do Dockerfile <a id="ancora"></a>
+### Estrutura e instruções do Dockerfile 
+<a id="ancora"></a>
 
 1. FROM: A instrução FROM define a imagem base para a construção da nova imagem. Aqui, estamos usando a imagem oficial do Debian 10 como ponto de partida.
 2. RUN: A instrução RUN executa comandos no ambiente de construção da imagem.
