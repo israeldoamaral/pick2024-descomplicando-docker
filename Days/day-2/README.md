@@ -120,7 +120,7 @@ Neste exemplo:
 
 6. Finalmente, a instrução **CMD** ou **ENTRYPOINT** é usada para definir o comando padrão que será executado quando o contêiner for iniciado.  
 
-## Registry
+## Registry<a name="registry-image"></a>
 
 Um registry Docker é um serviço que armazena e distribui imagens Docker. Ele atua como um repositório centralizado onde os desenvolvedores podem compartilhar e acessar imagens Docker. Existem várias implementações de registros Docker, incluindo o Docker Hub (o registro público mantido pela Docker, Inc.), bem como soluções privadas e auto-hospedadas, como o Amazon Elastic Container Registry (ECR), Google Container Registry (GCR), Azure Container Registry (ACR) e Docker Registry (software de código aberto que pode ser executado localmente ou em nuvem).  
 
