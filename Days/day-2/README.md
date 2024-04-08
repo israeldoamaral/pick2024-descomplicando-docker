@@ -109,10 +109,70 @@ CMD ["/app/hello"]
 Neste exemplo:  
 
 1. A primeira etapa (**FROM golang:1.18 as build**) usa uma imagem do Golang que contém todas as ferramentas necessárias para compilar o código fonte.
+
 2. Os arquivos do código fonte são copiados para o diretório de trabalho (**WORKDIR /app**) dentro do contêiner.
+
 3. O comando de compilação é executado (**RUN go build -o /app/hello**), produzindo os artefatos compilados ou construídos.
+
 4. Em seguida, começa a segunda etapa (**FROM alpine:3.15.9**), onde uma imagem mais leve é utilizada como base. Esta imagem pode ser uma imagem de produção ou uma imagem mais compacta, sem as ferramentas de compilação.
+
 5. Os artefatos gerados na primeira etapa são copiados para a segunda etapa usando a instrução (**COPY --from=buildando /app/hello /app/hello**).
+
 6. Finalmente, a instrução **CMD** ou **ENTRYPOINT** é usada para definir o comando padrão que será executado quando o contêiner for iniciado.  
 
 ## Registry
+
+Um registry Docker é um serviço que armazena e distribui imagens Docker. Ele atua como um repositório centralizado onde os desenvolvedores podem compartilhar e acessar imagens Docker. Existem várias implementações de registros Docker, incluindo o Docker Hub (o registro público mantido pela Docker, Inc.), bem como soluções privadas e auto-hospedadas, como o Amazon Elastic Container Registry (ECR), Google Container Registry (GCR), Azure Container Registry (ACR) e Docker Registry (software de código aberto que pode ser executado localmente ou em nuvem).  
+
+As principais funções de um registro Docker incluem:  
+
+1. **Armazenamento** de Imagens: Os registros Docker armazenam imagens Docker, que são artefatos contendo sistemas de arquivos e metadados necessários para executar aplicativos em contêineres.
+
+2. **Distribuição de Imagens**: Os registros Docker distribuem imagens Docker para os hosts que executam o Docker Engine. Isso permite que os desenvolvedores implantem e executem aplicativos em contêineres em qualquer lugar onde o Docker esteja sendo executado.
+
+3. **Controle de Acesso e Segurança**: Os registros Docker geralmente incluem recursos para controlar quem pode acessar e modificar imagens, bem como para garantir a integridade e segurança das imagens armazenadas.
+
+4. **Gerenciamento de Versões**: Os registros Docker geralmente suportam o gerenciamento de versões de imagens, permitindo que os desenvolvedores carreguem e recuperem versões específicas de imagens Docker.
+
+5. **Colaboração**: Os registros Docker facilitam a colaboração entre equipes de desenvolvimento, permitindo que os desenvolvedores compartilhem e colaborem em imagens Docker.
+
+No geral, os registros Docker desempenham um papel fundamental na construção, distribuição e execução de aplicativos em contêineres, fornecendo um mecanismo eficiente para compartilhar e acessar imagens Docker em uma ampla variedade de ambientes de desenvolvimento e produção.
+
+## Criando uma conta do Registry
+
+Para que consiga realizar a criação da sua conta, é necessário acessar no nosso caso vamos criar uma conta no DockerHub acessando a  URL https://hub.docker.com.
+
+Após criar a conta, vamos realizar o login.
+```
+$ docker login
+
+Username: <Usuário da conta criada>
+Password: <SEU TOKEN AQUI>
+Login Succeeded
+```
+Você consegue criar repositórios públicos à vontade, porém na conta free você somente tem direito a um repositório privado. Caso precise de mais do que um repositório privado, é necessário o upgrade da sua conta e o pagamento de uma mensalidade.
+
+## Compartilhando a Imagem
+
+Como exemplo, vamos utilizar a imagem que montamos no multi-stage anteriormente com o dockerfile. Vamos chama-la de  "israeldoamaral/hello".
+
+Quando realizarmos o upload dessa imagem para o Docker Hub, o repositório terá o mesmo nome da imagem, ou seja, "israeldoamaral/hello".
+
+Uma coisa muito importante! A sua imagem deverá ter o seguinte padrão, para que você consiga fazer o upload para o Docker Hub:
+
+**seuusuario/nomedaimagem:versão**
+
+- israeldoamaral - Nome do meu usuário do Docker Hub
+- app - Nome da Imagem
+- 1.0 - Versão que foi feito o build
+
+```
+# primeiro vamos realizar o build da imagem
+
+$ docker build -t israeldoamaral/app:v1.0 .
+
+# Agora vamos utilizar o comando "docker push", responsável por fazer o upload da imagem
+
+$ docker push israeldoamaral/app:1.0
+```
+

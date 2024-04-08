@@ -8,7 +8,8 @@
 - [Dockerfile](/Days/day-2/README.md#ancoradockerfile)  
 - [Estrutura do Dockerfile](/Days/day-2/README.md#estrutura-dockerfile)  
 - [Multi-Stage](/Days/day-2/README.md#multistage-image)
-- [DESAFIOS](/Days/desafio/README.md)  
+- [Registry]((/Days/day-2/README.md#registry-image))
+- [Desafios day-2](/Days/desafio/README.md)  
 
 # Day-3  
 - (/DAY-3/)  
