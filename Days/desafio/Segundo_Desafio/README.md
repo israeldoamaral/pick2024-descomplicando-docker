@@ -1,7 +1,8 @@
 ## Segundo Desafio Prático
 
 
-Essa é a primeira parte do desafio.todos os passos que você precisa para colocar a nossa App em execução localmente.
+Essa desafio é divido em duas partes, a primeira parte do desafio será apénas executar localmente a aplicação.  
+A segunda para iremos criar as imagens docker e executa-lo.
 
 Primeira parte:
 
