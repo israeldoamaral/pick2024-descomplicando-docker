@@ -1,4 +1,4 @@
-# ## Primeiro Desafio Prático
+## Primeiro Desafio Prático
 
 
 Criar uma imagem para rodar um Nginx. A imagem base precisa ser o Alpine Linux, e claro, precisamos ter o Nginx rodando perfeitamente.
