@@ -17,7 +17,7 @@ Ele é criado a partir de uma imagem e inclui o código da aplicação, suas dep
 O contêiner é executado **isoladamente**, sem depender das bibliotecas da máquina host.
 Essa abordagem permite que os desenvolvedores empacotem software para execução em **qualquer sistema de destino**.
 Os contêineres são altamente portáteis e podem ser executados em diferentes máquinas e sistemas operacionais.
-Por exemplo, uma aplicação corporativa pode ser dividida em **microsserviços**, cada um executado como um contêiner em várias máquinas e máquinas virtuais (VMs) no datacenter ou na nuvem
+Por exemplo, uma aplicação corporativa pode ser dividida em **microsserviços**, cada um executado como um contêiner em várias máquinas e máquinas virtuais (VMs) no datacenter ou na nuvem  
 
 ### Dockerfile<a name="ancora-dockerfile"></a>
 
