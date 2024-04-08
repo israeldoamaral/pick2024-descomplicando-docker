@@ -6,7 +6,8 @@
 # Day-2  
 - [Imagem de Container](/Days/day-2/README.md)   
 - [Dockerfile](/Days/day-2/README.md#ancoradockerfile)  
-- [Estrutura do Dockerfile](/Days/day-2/README.md#estrutura-dockerfile)
+- [Estrutura do Dockerfile](/Days/day-2/README.md#estrutura-dockerfile)  
+- [Multi-Stage](/Days/day-2/README.md#multistage-image)
 - [DESAFIOS](/Days/desafio/README.md)  
 
 # Day-3  

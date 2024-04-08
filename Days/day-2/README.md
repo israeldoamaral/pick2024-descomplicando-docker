@@ -87,3 +87,32 @@ O comando "docker run" é usado para iniciar um contêiner com base em uma image
 docker run -p 8080:80 -d --name apache apache_server:v1.0
 ```
 
+## Multi-stage<a name="multistage-image"></a>
+
+O recurso de multi-stage em Dockerfile é uma técnica que permite criar imagens Docker de forma mais eficiente, especialmente útil quando você precisa compilar aplicativos ou executar tarefas de construção que exigem um conjunto de ferramentas específico que não é necessário na imagem final. Isso ajuda a manter o tamanho da imagem final o mais compacto possível.
+
+Em essência, o multi-stage build permite definir várias etapas (ou "estágios") no Dockerfile, onde cada etapa pode usar uma imagem base diferente e realizar operações específicas. O resultado final é que apenas o conteúdo da última etapa é incluído na imagem resultante, o que reduz o tamanho final da imagem.  
+
+Aqui está um exemplo básico de como um Dockerfile usando multi-stage pode ser estruturado:
+
+```
+FROM golang:1.18 as build
+WORKDIR /app
+COPY . ./
+RUN go mod init hello
+RUN go build -o /app/hello
+
+FROM alpine:3.15.9
+COPY --from=buildando /app/hello /app/hello
+CMD ["/app/hello"]
+```
+Neste exemplo:  
+
+1. A primeira etapa (**FROM golang:1.18 as build**) usa uma imagem do Golang que contém todas as ferramentas necessárias para compilar o código fonte.
+2. Os arquivos do código fonte são copiados para o diretório de trabalho (**WORKDIR /app**) dentro do contêiner.
+3. O comando de compilação é executado (**RUN go build -o /app/hello**), produzindo os artefatos compilados ou construídos.
+4. Em seguida, começa a segunda etapa (**FROM alpine:3.15.9**), onde uma imagem mais leve é utilizada como base. Esta imagem pode ser uma imagem de produção ou uma imagem mais compacta, sem as ferramentas de compilação.
+5. Os artefatos gerados na primeira etapa são copiados para a segunda etapa usando a instrução (**COPY --from=buildando /app/hello /app/hello**).
+6. Finalmente, a instrução **CMD** ou **ENTRYPOINT** é usada para definir o comando padrão que será executado quando o contêiner for iniciado.  
+
+## Registry
