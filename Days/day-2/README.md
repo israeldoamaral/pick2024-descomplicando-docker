@@ -1,6 +1,6 @@
 # DAY-2
 
-# Dockerfile e Imagem de Containers
+# Imagem de Containers
 
 ### Imagens Docker
 
@@ -35,30 +35,34 @@ ENTRYPOINT [ "/usr/sbin/apachectl" ]
 CMD [ "-D", "FOREGROUND" ]
 ```
 
-### Estrutura e instruções do Dockerfile 
+### Estrutura e instruções do Dockerfile<a name="estrutura-dockerfile"></a>
 
 
-1. FROM: A instrução FROM define a imagem base para a construção da nova imagem. Aqui, estamos usando a imagem oficial do Debian 10 como ponto de partida.
-2. RUN: A instrução RUN executa comandos no ambiente de construção da imagem.
+- ADD -- Copia novos arquivos, diretórios, arquivos TAR ou arquivos remotos e os adiciona ao filesystem do container.
 
-   Neste caso, estamos realizando as seguintes ações:  
-   apt-get update: Atualiza o cache dos pacotes disponíveis.  
-   apt-get install -y apache2 curl: Instala os pacotes Apache2 e curl.  
-   apt-get clean: Remove arquivos temporários gerados durante a instalação.  
-3. ENV: A instrução ENV define variáveis de ambiente dentro do contêiner.
+- CMD -- Executa um comando. Diferentemente do RUN, que executa o comando no momento em que está "buildando" a imagem, o CMD irá fazê-lo somente quando o container é iniciado.
 
-   Neste caso estamos definindo as variáveis:  
-   - ENV APACHE_LOCK_DIR="/var/lock": Essa variável é usada pelo Apache para especificar o diretório de bloqueio.  
-   - ENV APACHE_PID_FILE="/var/run/apache2.pid": Essa variável especifica o local do arquivo PID (identificador de processo) do Apache.  
-   - ENV APACHE_RUN_USER="www-data": Essas linhas definem as variáveis de ambiente para o usuário que executarão o Apache.  
-   - ENV APACHE_RUN_GROUP="www-data": Essas linhas definem as variáveis de ambiente para o grupo que executará o Apache.  
-   - ENV APACHE_LOG_DIR="/var/log/apache2": Essa variável especifica o diretório onde os logs do Apache serão armazenados.  
+- LABEL -- Adiciona metadados à imagem, como versão, descrição e fabricante.
 
-4. LABEL: A instrução LABEL adiciona etiquetas à imagem.
-5. VOLUME: A instrução cria um volume no contêiner. Isso permite que dados sejam persistidos entre contêineres e o host.
-6. EXPOSE: Informa ao Docker que o contêiner escutará na porta 80.
-- ENTRYPOINT: A instrução define o ponto de entrada para o contêiner.
-- CMD: Define o comando padrão a ser executado quando o contêiner for iniciado.
+- COPY -- Copia novos arquivos e diretórios e os adiciona ao filesystem do container.
+
+- ENTRYPOINT -- Permite que você configure um container para rodar um executável. Quando esse executável for finalizado, o container também será.
+
+- ENV -- Informa variáveis de ambiente ao container.
+
+- EXPOSE -- Informa qual porta o container estará ouvindo.
+
+- FROM -- Indica qual imagem será utilizada como base. Ela precisa ser a primeira linha do dockerfile.
+
+- MAINTAINER -- Autor da imagem.
+
+- RUN -- Executa qualquer comando em uma nova camada no topo da imagem e "commita" as alterações. Essas alterações você poderá utilizar nas próximas instruções de seu dockerfile.
+
+- USER -- Determina qual usuário será utilizado na imagem. Por default é o root.
+
+- VOLUME -- Permite a criação de um ponto de montagem no container.
+
+- WORKDIR -- Responsável por mudar do diretório "/" (raiz) para o especificado nele.
 
 ### Buildando a imagem
 
