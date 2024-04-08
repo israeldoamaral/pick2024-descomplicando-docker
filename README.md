@@ -1,10 +1,13 @@
 # Pick - Programa Intensivo em Containers e Kubernetes da LINUXtips
 
+# Day-1  
+- [linha1](Days/day-1)
 
-**DAY-2**  
+# Day-2  
 - [Dockerfile e Imagem de Containersúdo](/Days/day-2/README.md)   
-  [Dockerfile](/Days/day-2/README.md#ancoradockerfile) 
-- [Desafios](/Days/desafio/README.md)  
+- [Dockerfile](/Days/day-2/README.md#ancoradockerfile)  
+- [Estrutura e instruções do Dockerfile](#estrutura-e-instruções-do-dockerfile)
+- [DESAFIOS](/Days/desafio/README.md)  
 
-**DAY-3**  
+# Day-3  
 - (/DAY-3/)  
