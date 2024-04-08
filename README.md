@@ -2,5 +2,9 @@
 > [!TIP]  
 Clique nas pastas para ir aos desafios.  
 
-[**DAY-2**](/Days/day-2/README.md#ancora)  
-[**DAY-3**](/DAY-3/)  
+**DAY-2**  
+- [Conteúdo](/Days/day-2/README.md)  
+- [Desafios](/Days/day-2/README.md)  
+
+**DAY-3**  
+- (/DAY-3/)  

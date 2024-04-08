@@ -1,6 +1,6 @@
 # DAY-2
 
-# Dockerfile e Iagem de Containers
+# Dockerfile e Imagem de Containers
 
 ### Imagens Docker
 
@@ -35,7 +35,7 @@ EXPOSE 80
 ENTRYPOINT [ "/usr/sbin/apachectl" ]
 CMD [ "-D", "FOREGROUND" ]
 ```
-<a id="ancora"></a>
+
 ### Estrutura e instruções do Dockerfile 
 
 
