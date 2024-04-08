@@ -2,7 +2,7 @@
 
 
 Essa desafio é divido em duas partes, a primeira parte do desafio será apénas executar localmente a aplicação.  
-A segunda para iremos criar as imagens docker e executa-lo.
+A segunda parte iremos criar as imagens docker e executa-lo.
 
 Primeira parte:
 
