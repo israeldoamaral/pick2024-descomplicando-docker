@@ -14,4 +14,4 @@
 - [Desafios day-2](/Days/desafios/README.md)  
 
 ### Day-3  
-- [Transformando a aplicação em imagem de container](/DAY-3/)  
+- [Transformando uma aplicação Python em imagem de container](/day-3/files/README.md)  

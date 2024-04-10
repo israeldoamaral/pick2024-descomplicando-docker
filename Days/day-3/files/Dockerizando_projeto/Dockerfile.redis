@@ -1,0 +1,14 @@
+FROM  cgr.dev/chainguard/redis 
+
+
+LABEL description="Desafio Day2" \
+      stack="Redis" \
+      version="7.2.4"
+
+EXPOSE 6379
+
+ENTRYPOINT [ "redis-server" ]
+
+
+# docker network create app_network
+#docker run -d --name redis-server --network app_network israeldoamaral/redis-server
