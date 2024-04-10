@@ -3,7 +3,7 @@
 # Dockerizando o projeto
 
 > [!NOTE]
-Os arquivos dos passos estão na pasta [Dockerizando_projeto](Dockerizando_projeto)
+Os arquivos dos passos estão na pasta [Dockerizando_projeto](files/Dockerizando_projeto/)
 
 
 ### Clonando o projeto
