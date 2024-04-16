@@ -74,7 +74,7 @@ localhost:5000
 ![print1](files/Dockerizando_projeto/prints/1.png)
 
 
-## Tamanho e número de camadas da imagem
+## Tamanho e número de camadas da imagem<a name="tamanhoecamadas"></a>
 
 As camadas de imagem Docker são uma parte essencial da arquitetura Docker e são fundamentais para sua eficiência e funcionalidade. Elas representam os diferentes estados de uma imagem Docker conforme são construídas e modificadas. Aqui está uma descrição geral das camadas de imagem Docker:  
 
