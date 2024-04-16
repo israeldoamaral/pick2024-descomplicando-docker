@@ -125,7 +125,8 @@ IMAGE          CREATED       CREATED BY                                      SIZ
 <missing>      6 days ago    /bin/sh -c #(nop) ADD file:ca6d1f0f80dd6c91b…   117MB
 ```  
 
-> [!NOTE] Perceba que além das camadas adicionadas por nós no nosso  Dockfile, exite as camadas da imagem base que no caso usamos a **python:3.11**  
+> [!NOTE]
+Perceba que além das camadas adicionadas por nós no nosso  Dockfile, exite as camadas da imagem base que no caso usamos a **python:3.11**  
 
 
 
