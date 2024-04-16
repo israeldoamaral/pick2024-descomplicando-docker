@@ -294,7 +294,7 @@ O trivy funciona de duas formas:
 
 ### Instalando o Trivy
 
-Como utilizo o Ubuntu então irei realizAR a instalação via APT-GET.  
+Como utilizo o Ubuntu então irei realizar a instalação via APT-GET.  
 
 ```
 sudo apt-get install wget apt-transport-https gnupg lsb-release
@@ -333,3 +333,8 @@ Só por ter utilizado uma imagem slim já diminui a quantidade de vulnerabilidad
 $ trivy image israeldoamaral/giropops-senhas:3.0
 ```  
 ![scan1](files/Trivy/prints/scan_3.png)
+
+Olha que coisa linda nossa imagem sem nenhuma vulnerabilidade encontada.
+
+
+## Assinando as imagem
