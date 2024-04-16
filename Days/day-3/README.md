@@ -128,8 +128,6 @@ IMAGE          CREATED       CREATED BY                                      SIZ
 > [!NOTE]
 Perceba que além das camadas adicionadas por nós no nosso  Dockfile, exitem as camadas da imagem base que no caso usamos a **python:3.11**  
 
-  
-
 
 Embora as camadas de imagem Docker ofereçam muitos benefícios em termos de eficiência e reutilização, elas também podem apresentar alguns desafios e problemas potenciais:  
 
@@ -143,8 +141,50 @@ Embora as camadas de imagem Docker ofereçam muitos benefícios em termos de efi
 
 5. **Segurança:** Imagens com muitas camadas podem aumentar a superfície de ataque, pois cada camada representa um ponto de entrada potencial para exploração. Se uma camada contiver vulnerabilidades de segurança, elas podem ser propagadas para outras imagens construídas sobre essa base.  
 
-Embora esses problemas possam surgir em imagens com muitas camadas, muitos deles podem ser mitigados com boas práticas de desenvolvimento e gerenciamento de imagens Docker, como a redução do número de camadas, a seleção cuidadosa das dependências e a otimização do Dockerfile.
+Embora esses problemas possam surgir em imagens com muitas camadas, muitos deles podem ser mitigados com boas práticas de desenvolvimento e gerenciamento de imagens Docker, como a redução do número de camadas, a seleção cuidadosa das dependências e a otimização do Dockerfile.  
 
+### Verificando o tamanho da imagem
+
+```
+$ docker image ls  
+
+REPOSITORY                       TAG       IMAGE ID       CREATED         SIZE
+israeldoamaral/giropops-senhas   1.0       2bd548ceb790   5 days ago      1.03GB
+```
+
+### Diminuindo tamanho da imagem
+
+Para diminuir a imagem da aplicação vamos utilizar um imagem **slim** python:3.11-slim
+
+```
+FROM python:3.11-slim
+
+WORKDIR /app
+COPY requirements.txt .
+COPY app.py .
+COPY static/ static/
+COPY templates/ templates/
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 5000
+
+CMD ["flask", "run", "--host=0.0.0.0"]
+```  
+
+Vamos buildar a imagem e versionar para 2.0
+```
+docker build -t israeldoamaral/giropops-senhas:2.0 -f Dockerfile.app .
+```  
+
+verificando a diferença de tamanho das duas imagens
+
+```
+$ docker image ls                                                       
+REPOSITORY                       TAG       IMAGE ID       CREATED         SIZE
+israeldoamaral/giropops-senhas   2.0       8c53ce8bca1a   2 minutes ago   149MB
+israeldoamaral/giropops-senhas   1.0       2bd548ceb790   5 days ago      1.03GB
+```
 
 
 ## Distroless
