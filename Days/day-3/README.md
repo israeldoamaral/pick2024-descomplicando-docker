@@ -126,8 +126,9 @@ IMAGE          CREATED       CREATED BY                                      SIZ
 ```  
 
 > [!NOTE]
-Perceba que além das camadas adicionadas por nós no nosso  Dockfile, exite as camadas da imagem base que no caso usamos a **python:3.11**  
+Perceba que além das camadas adicionadas por nós no nosso  Dockfile, exitem as camadas da imagem base que no caso usamos a **python:3.11**  
 
+  
 
 
 Embora as camadas de imagem Docker ofereçam muitos benefícios em termos de eficiência e reutilização, elas também podem apresentar alguns desafios e problemas potenciais:  
