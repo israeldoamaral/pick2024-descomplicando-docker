@@ -339,4 +339,15 @@ Olha que coisa linda nossa imagem sem nenhuma vulnerabilidade encontada.
 
 ## Assinando as imagem<a name="assinandoimagens"></a>
 
-continua...
+Assinar uma imagem Docker é um processo de aplicar uma assinatura digital a uma imagem Docker específica. Isso é feito usando chaves criptográficas para garantir a autenticidade e integridade da imagem Docker.  
+
+Porque é importante:
+
+1. **Autenticidade:** Uma assinatura digital permite verificar a identidade do autor da imagem Docker. Isso é crucial para garantir que a imagem tenha sido criada e distribuída pela fonte esperada, ajudando a evitar a execução de imagens maliciosas ou adulteradas.
+2. **Integridade:** A assinatura digital também é usada para garantir que a imagem Docker não foi modificada desde que foi assinada. Isso protege contra adulterações acidentais ou maliciosas da imagem durante o transporte ou armazenamento.  
+3. **Confiança:** Ao assinar uma imagem Docker, os usuários podem confiar na sua origem e integridade, tornando mais seguro o uso de imagens de contêiner em ambientes de produção e em implantações críticas.  
+
+Em resumo, assinar uma imagem Docker é uma prática recomendada para garantir a segurança e a confiança das imagens usadas em ambientes de desenvolvimento e produção. Isso ajuda a mitigar riscos de segurança e garante a procedência e integridade das imagens usadas em sistemas de contêineres.
+
+E para nosso estudo vamos utilizar o [**Cosign**](https://docs.sigstore.dev/signing/quickstart/) da Sigstore.  
+
