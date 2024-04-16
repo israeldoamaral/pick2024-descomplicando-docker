@@ -187,4 +187,78 @@ israeldoamaral/giropops-senhas   1.0       2bd548ceb790   5 days ago      1.03GB
 ```
 
 
-## Distroless
+## Distroless<a name="imagemdistroless"></a>
+
+### A arte da Minimização  
+
+**Introdução** 
+
+No mundo dos containers, existe uma tendência emergente chamada "Distroless". Este termo é um neologismo que descreve uma imagem de container que contém apenas as dependências e artefatos necessários para a execução do aplicativo, eliminando a distribuição completa do sistema operacional. Neste capítulo, exploraremos o conceito de distroless, suas vantagens, desvantagens e como implementá-lo em seu próprio ambiente.
+
+**O que é Distroless**  
+
+"Distroless" refere-se à estratégia de construir imagens de containers que são efetivamente "sem distribuição". Isso significa que elas não contêm a distribuição típica de um sistema operacional Linux, como shell de linha de comando, utilitários ou bibliotecas desnecessárias. Ao invés disso, essas imagens contêm apenas o ambiente de runtime (como Node.js, Python, Java, etc.) e o aplicativo em si.  
+
+**Benefícios do Distroless**  
+
+O principal benefício das imagens Distroless é a segurança. Ao excluir componentes não necessários, o potencial de ataque é significativamente reduzido. Além disso, sem as partes extras do sistema operacional, o tamanho do container é minimizado, economizando espaço de armazenamento e aumentando a velocidade de deploy.  
+
+**Desafios do Distroless**  
+
+Apesar de seus benefícios, a estratégia Distroless não está isenta de desafios. Sem um shell ou utilitários de sistema operacional, a depuração pode ser mais complicada. Além disso, a construção de imagens Distroless pode ser um pouco mais complexa, pois requer uma compreensão cuidadosa das dependências do aplicativo.
+
+**Implementando Distroless**  
+
+Existem várias maneiras de implementar uma estratégia Distroless. A mais simples é usar uma das imagens base Distroless fornecidas pelo **Google** e pela **Chainguard**. Estas imagens são projetadas para serem o mais minimalistas possível e podem ser usadas como ponto de partida para a construção de suas próprias imagens de container.
+
+## Diminuindo a imagem ainda mais
+
+Para essa tarefa vamos utilizar as imagens da [**Chainguard**](https://www.chainguard.dev/chainguard-images). Para isso altere ou crie um novo Dockerfile.
+
+> [!TIP]
+OBS: Sempre lembrando de está no repositório da aplicação.
+
+```
+FROM cgr.dev/chainguard/python:latest-dev as builder
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt --user
+
+
+
+FROM cgr.dev/chainguard/python:latest
+
+WORKDIR /app
+
+# Make sure you update Python version in path
+COPY --from=builder /home/nonroot/.local/lib/python3.12/site-packages /home/nonroot/.local/lib/python3.12/site-packages
+COPY --from=builder /home/nonroot/.local/bin  /home/nonroot/.local/bin
+ENV PATH=$PATH:/home/nonroot/.local/bin
+
+COPY app.py .
+COPY static/ static/
+COPY templates/ templates/
+
+ENV REDIS_HOST="redis-server"
+
+ENTRYPOINT ["flask", "run", "--host=0.0.0.0"]
+```  
+
+Vamos buildar a imagem e agora vamos versionar para 3.0
+```
+docker build -t israeldoamaral/giropops-senhas:3.0 -f Dockerfile.app .
+```  
+
+verificando a diferença de tamanho das três imagens
+```
+$ docker image ls  
+
+REPOSITORY                       TAG       IMAGE ID       CREATED          SIZE
+israeldoamaral/giropops-senhas   3.0       417a152343b3   13 seconds ago   72.8MB
+israeldoamaral/giropops-senhas   2.0       8c53ce8bca1a   55 minutes ago   149MB
+israeldoamaral/giropops-senhas   1.0       2bd548ceb790   5 days ago       1.03GB
+```  
+
