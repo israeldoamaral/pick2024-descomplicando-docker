@@ -263,3 +263,73 @@ israeldoamaral/giropops-senhas   2.0       8c53ce8bca1a   55 minutes ago   149MB
 israeldoamaral/giropops-senhas   1.0       2bd548ceb790   5 days ago       1.03GB
 ```  
 
+## Analisando as vulnerabilidades de imagem<a name="analisevulnerabilidades"></a>
+
+Para verificar as vulnerabilidade em uma imagem usaremos o [**Trivy**](https://trivy.dev/) da Aqua Security.  
+
+Trivy é um scanner de segurança abrangente e versátil que tem scanners que procuram problemas de segurança e tem como alvos onde podem encontrar esses problemas.  
+
+Alvos (o que a Trivy pode digitalizar):  
+
+- Imagem do Container
+- Sistemas de Arquivos
+- Repository Git (remote)
+- Imagem de Máquina Virtual
+- Kubernetes
+- AWS
+
+Scanners (o que a Trivy pode encontrar):  
+
+- Pacotes de SO e dependências de software em uso (SBOM)
+- Vulnerabilidades conhecidas (CVEs)
+- Questões IaC e configurações incorretas
+- Informações e segredos sensíveis
+- Licenças de software
+
+
+O trivy funciona de duas formas:  
+
+- Com servidor: Rodar um servidor de trivy evita que toda vez que você precise rodá-lo em diferentes hosts, você precise baixar o banco de dados dele que tem aproximadamente 30MB.
+- Sem servidor: Rodando local por exemplo, ele vai baixar o banco de dados uma vez e só irá baixar novamente caso tenha atualizações.
+
+### Instalando o Trivy
+
+Como utilizo o Ubuntu então irei realizAR a instalação via APT-GET.  
+
+```
+sudo apt-get install wget apt-transport-https gnupg lsb-release
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+sudo apt-get update
+sudo apt-get install trivy
+
+```   
+
+### Verificando a imagem
+
+1. Primeiro vamos analisar a imagem com a versão 1.0 da aplicação que tem como imagem base o **python:3.11**  
+
+```
+$ trivy image israeldoamaral/giropops-senhas:1.0
+```  
+![scan1](files/Trivy/prints/scan_1.png)  
+![scan1](files/Trivy/prints/scan_1.2.png)
+
+Verifique a quantidade de vulnerabilidades encontradas nessa imagem
+
+2. Segundo vamos analisar a imagem com a versão 2.0 da aplicação que contem como imagem base a **python:3.11-slim**
+
+```
+$ trivy image israeldoamaral/giropops-senhas:2.0
+```  
+![scan1](files/Trivy/prints/scan_2.png)  
+
+> [!TIP]  
+Só por ter utilizado uma imagem slim já diminui a quantidade de vulnerabilidades
+
+3. Terceiro vamos analisar a imagem com a versão 3.0 da aplicação que contem como base as imagens da chainguard **chainguard/python:latest**
+
+```
+$ trivy image israeldoamaral/giropops-senhas:3.0
+```  
+![scan1](files/Trivy/prints/scan_3.png)

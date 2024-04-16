@@ -17,3 +17,4 @@
 - [Transformando uma aplicação Python em imagem de container](/Days/day-3/README.md)  
 - [Tamanho e número de camadas da imagem](/Days/day-3/README.md#tamanhoecamadas)  
 - [Imagem Distroless](/Days/day-3/README.md#imagemdistroless)
+- [Análise de Vulnerabilidade](/Days/day-3/README.md#imagemdistroless)
