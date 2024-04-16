@@ -213,10 +213,11 @@ Existem várias maneiras de implementar uma estratégia Distroless. A mais simpl
 
 ## Diminuindo a imagem ainda mais
 
-Para essa tarefa vamos utilizar as imagens da [**Chainguard**](https://www.chainguard.dev/chainguard-images). Para isso altere ou crie um novo Dockerfile.
+Para essa tarefa vamos utilizar as imagens da [**Chainguard**](https://www.chainguard.dev/chainguard-images). Altere ou crie um novo Dockerfile.
 
-> [!TIP]
-OBS: Sempre lembrando de está no repositório da aplicação.
+> [!TIP]  
+OBS1: Vamos utilizar junto com a imagem Distroless o recurso já visto que é o Multi-satge Build.  
+OBS2: Sempre lembrando de está no repositório da aplicação.
 
 ```
 FROM cgr.dev/chainguard/python:latest-dev as builder
